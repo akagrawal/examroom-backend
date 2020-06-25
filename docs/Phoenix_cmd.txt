@@ -1,0 +1,7 @@
+Phoenix helping cmd
+
+$ mix ecto.gen.migration update_user_table
+$ mix ecto.migrate
+$ mix ecto.rollback
+
+changeset: https://hexdocs.pm/ecto/Ecto.Changeset.html
