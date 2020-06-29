@@ -1,14 +1,8 @@
 defmodule Examroom.Utils.AuthUtils do
-  import Ecto.Query
-  alias Examroom.Repo
-  alias Models.UserData
+  alias Examroom.Utils.UserUtility
   require Logger
   def user_registered?(%{"userid" => userid}) do
-    useridlist =
-      UserData
-      |> where([u], u.userid==^userid)
-      |> select([u], [u.userid])
-      |> Repo.all
+    useridlist = UserUtility.get_user(userid)
       case useridlist do
         [_userid] ->
           true

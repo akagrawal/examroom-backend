@@ -13,6 +13,7 @@ defmodule Models.UserData do
   def changeset(user, params \\ %{}) do
     user
     |> cast(params, [:userid, :username, :password])
+    |> validate_required([:userid, :username, :password])
   end
 
 end
