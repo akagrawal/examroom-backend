@@ -1,8 +1,9 @@
 defmodule ExamroomWeb.UserSocket do
+  require Logger
   use Phoenix.Socket
-
   ## Channels
-   channel "room:*", ExamroomWeb.RoomChannel
+   channel "reception", ExamroomWeb.ReceptionChannel
+   channel "room*", ExamroomWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -33,4 +34,10 @@ defmodule ExamroomWeb.UserSocket do
   # Returning `nil` makes this socket anonymous.
   @impl true
   def id(_socket), do: nil
+
+  @impl true
+  def terminate(reason, socket) do
+    Logger.info("#{inspect(reason)}")
+    Logger.info("#{inspect(socket)}")
+  end
 end

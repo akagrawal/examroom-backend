@@ -5,7 +5,7 @@ defmodule ExamroomWeb.RoomChannelTest do
     {:ok, _, socket} =
       ExamroomWeb.UserSocket
       |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(ExamroomWeb.RoomChannel, "room:lobby")
+      |> subscribe_and_join(ExamroomWeb.RoomChannel, "room:reception")
 
     %{socket: socket}
   end
@@ -15,7 +15,7 @@ defmodule ExamroomWeb.RoomChannelTest do
     assert_reply ref, :ok, %{"hello" => "there"}
   end
 
-  test "shout broadcasts to room:lobby", %{socket: socket} do
+  test "shout broadcasts to room:reception", %{socket: socket} do
     push socket, "shout", %{"hello" => "all"}
     assert_broadcast "shout", %{"hello" => "all"}
   end
