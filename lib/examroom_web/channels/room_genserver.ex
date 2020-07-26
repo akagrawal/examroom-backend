@@ -12,6 +12,10 @@ defmodule  ExamroomWeb.RoomGenServer do
     GenServer.call({:global, room_id}, {:add_user, user_name}, 10000)
   end
 
+  def get_user_list(room_id) do
+    GenServer.call({:global, room_id}, :get_user_list)
+  end
+
   # gen_server callbacks
   def init([room_id]) do
     Logger.info("GenServer init #{inspect(room_id)}")
@@ -25,6 +29,11 @@ defmodule  ExamroomWeb.RoomGenServer do
     updated_user_list = prev_user_list ++ [user_name]
     new_state = %{state | user_list: updated_user_list}
     {:reply, :ok, new_state}
+  end
+
+  def handle_call(:get_user_list, _from, state) do
+    Logger.info("fetching user list")
+    {:reply, state.user_list, state}
   end
 
 # %{room_state | user_list: []}
