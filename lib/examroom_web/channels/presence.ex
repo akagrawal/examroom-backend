@@ -7,7 +7,6 @@ defmodule ExamroomWeb.Presence do
   """
   use Phoenix.Presence, otp_app: :examroom,
                         pubsub_server: Examroom.PubSub
-end
 
 @doc """
 Overrides the default fetch. Instead of returning the full users list,
@@ -26,4 +25,6 @@ defp count_presences(entries, key) do
     nil -> 0
     metas -> length(metas)
   end
+end
+
 end

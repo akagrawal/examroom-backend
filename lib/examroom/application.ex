@@ -17,7 +17,9 @@ defmodule Examroom.Application do
       ExamroomWeb.Endpoint,
       # Start a worker by calling: Examroom.Worker.start_link(arg)
       # {Examroom.Worker, arg}
-      ExamroomWeb.Presence
+      ExamroomWeb.Presence,
+      {Registry, keys: :unique, name: ExamroomWeb.RoomRegistry},
+      {ExamroomWeb.RoomChannelSupervisor, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
