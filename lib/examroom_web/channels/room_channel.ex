@@ -39,11 +39,24 @@ use ExamroomWeb, :channel
     end
 
     @impl true
+    def handle_in("start_test", %{"body" => room_id}, socket) do
+      Logger.info("start_test for #{inspect(room_id)}")
+      # check if this user can start the test or not
+      broadcast socket, "start_test", %{roomid: room_id}
+      {:noreply, socket}
+    end
+
+    @impl true
     def handle_in("shout", payload, socket) do
       broadcast socket, "shout", payload
       {:noreply, socket}
     end
 
+    def handle_in("new_user", %{"body" => user_name}, socket) do
+      Logger.info("new user added #{inspect(user_name)}")
+      broadcast socket, "new_user", %{username: user_name}
+      {:noreply, socket}
+    end
   @impl true
   @spec terminate(any, any) :: {:ok, any}
   def terminate(reason, socket) do
