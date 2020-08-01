@@ -2,15 +2,14 @@ defmodule ExamroomWeb.UserSocket do
   require Logger
   use Phoenix.Socket
   ## Channels
-   channel "reception", ExamroomWeb.ReceptionChannel
-   channel "room*", ExamroomWeb.RoomChannel
-
+  channel "reception", ExamroomWeb.ReceptionChannel
+  channel "room*", ExamroomWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
   # verification, you can put default assigns into
   # the socket that will be set for all channels, ie
-  #dl;
+  # dl;
   #     {:ok, assign(socket, :user_id, verified_user_id)}
   #
   # To deny connection, return `:error`.

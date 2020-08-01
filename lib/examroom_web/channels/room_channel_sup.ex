@@ -11,9 +11,8 @@ defmodule ExamroomWeb.RoomChannelSupervisor do
     DynamicSupervisor.init(strategy: :one_for_one)
   end
 
-def add_child(roomId) do
-  child_spec = {RoomGenServer, {:global, roomId}}
-  DynamicSupervisor.start_child(__MODULE__, child_spec)
-end
-
+  def add_child(roomId) do
+    child_spec = {RoomGenServer, roomId}
+    DynamicSupervisor.start_child(__MODULE__, child_spec)
+  end
 end

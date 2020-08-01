@@ -8,8 +8,8 @@ defmodule Examroom.Repo.Migrations.UpdateUserTable do
       add :password, :string, size: 20
       timestamps
     end
+
     create unique_index(:user_data, [:username])
     create unique_index(:user_data, [:email])
-
   end
 end
